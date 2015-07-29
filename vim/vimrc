@@ -1,0 +1,99 @@
+" options
+filetype plugin on
+filetype indent on
+set shell=/bin/bash
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => interface
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nu
+set mouse=a
+
+try
+    set colorcolumn=80
+catch
+endtry
+
+set list!
+set listchars=tab:→\ 
+
+colorscheme monokai
+" colorscheme tango
+" colorscheme twilight
+
+" bash-like tab completion
+set wildmode=longest,list,full
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text, tab and indent related
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set noexpandtab
+set shiftwidth=4
+set tabstop=4
+set smarttab
+
+set lbr
+set tw=500
+
+set ai "Auto indent
+set si "Smart indet
+set nowrap "Wrap lines
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files, backups and undo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git anyway...
+set nobackup
+
+"Persistent undo
+try
+    set undodir=~/.vim_runtime/undodir
+    set undofile
+catch
+endtry
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => System integration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Use X clipboard
+"it works only if vim builded with '+clipboard' option
+set clipboard=unnamed
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Install vundle:
+"  see https://github.com/gmarik/vundle
+" Install configured bundles:
+"  run :BundleInstall
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+Bundle 'scrooloose/nerdtree'
+Bundle 'bronson/vim-trailing-whitespace'
+Bundle 'motemen/git-vim'
+Bundle 'derekwyatt/vim-scala'
+Bundle 'fatih/vim-go'
+Bundle 'millermedeiros/vim-statline'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'kien/ctrlp.vim'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'mileszs/ack.vim'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins configuration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:go_fmt_command = "gofmt"
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|_vendor)$',
+  \ 'file': '\v\.(a|so|swp)$',
+  \ }
